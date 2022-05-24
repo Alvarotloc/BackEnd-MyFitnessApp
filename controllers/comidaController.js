@@ -3,7 +3,7 @@ import Comida from "../models/Comida.js";
 const obtenerComidas = async (req, res) => {
   try {
     const comidas = await Comida.find();
-    if (comidas.length > 0) {
+    if (comidas.length >= 0) {
       res.json(comidas);
       return;
     }
