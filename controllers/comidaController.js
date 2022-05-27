@@ -2,7 +2,7 @@ import Comida from "../models/Comida.js";
 
 const obtenerComidas = async (req, res) => {
   try {
-    const comidas = await Comida.find();
+    const comidas = await Comida.find().where('creado').equals(new Date().toLocaleDateString())
     if (comidas.length >= 0) {
       res.json(comidas);
       return;
@@ -15,6 +15,7 @@ const obtenerComidas = async (req, res) => {
 
 const agregarComida = async (req, res) => {
   const comida = new Comida(req.body);
+
   try {
     const comidaAlmacenada = await comida.save();
     res.json(comidaAlmacenada);
@@ -34,7 +35,7 @@ const editarComida = async (req, res) => {
   }
 
   comida.nombre = req.body.nombre || comida.nombre;
-  comida.imagen = req.body.imagen || comida.imagen;
+  comida.categoria = req.body.categoria || comida.categoria;
   comida.gramos = req.body.gramos || comida.gramos;
   comida.kcal = req.body.kcal || comida.kcal;
   comida.proteinas = req.body.proteinas || comida.proteinas;

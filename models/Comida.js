@@ -6,8 +6,10 @@ const comidaSchema = mongoose.Schema({
     required : true,
     trim     : true,
   },
-  imagen: {
+  categoria : {
     type     : String,
+    required : true,
+    trim     : true
   },
   gramos : {
     type     : Number,
@@ -34,6 +36,10 @@ const comidaSchema = mongoose.Schema({
     required : true,
     trim     : true,
   },
+  creado : {
+    type     : String,
+    default  : new Date().toLocaleDateString(),
+  }
 });
 
 const Comida = mongoose.model("Comida", comidaSchema);
